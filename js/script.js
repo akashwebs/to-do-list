@@ -12,7 +12,6 @@ document.getElementById('add-button').addEventListener('click', function() {
     const inputField = document.getElementById('input-field');
     if (inputField.value.length > 0) {
 
-
         const tableBody = document.getElementById('table-body');
 
         // create table elements
@@ -24,9 +23,11 @@ document.getElementById('add-button').addEventListener('click', function() {
         doneButton.innerText = 'Done';
         const removeButton = elements('button');
         removeButton.innerText = 'remove';
+
         // add class in done and remove button
         doneButton.classList.add("btn", "btn-primary");
-        removeButton.classList.add('btn', 'btn-danger');
+        removeButton.classList.add('btn', 'btn-danger', 'rmv-btn');
+        // child added
         tr.appendChild(th);
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -34,15 +35,24 @@ document.getElementById('add-button').addEventListener('click', function() {
         td2.appendChild(removeButton);
         tableBody.appendChild(tr);
 
-
+        // add class in tr
         th.innerText = count += 1;
 
         td1.innerText = inputField.value;
 
+        inputField.value = '';
+
+        rmvButton = document.getElementsByClassName('rmv-btn');
+        for (const btn of rmvButton) {
+
+
+            btn.addEventListener('click', e => {
+                e.target.parentNode.parentNode.remove();
+
+            })
+        }
+
     }
-    inputField.value = '';
-})
+});
 
-document.getElementById('all-clear').addEventListener('click', function() {
-
-})
+// all clear button
